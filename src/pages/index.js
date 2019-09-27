@@ -32,7 +32,7 @@ const IndexPage = () => {
       <StyledBgImage>
         <animated.h1 style={stroked}>Hello World</animated.h1>
         <div style={{ width: "200px", margin: "auto" }}>
-          <Image filename="gatsby-astronaut.png" />
+          <Image filename="gatsby-astronaut.png" alt="astronaut"/>
         </div>
         <div style={{ height: "150px", marginBottom: "1em" }} />
       </StyledBgImage>

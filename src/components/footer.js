@@ -17,15 +17,21 @@ const Footer = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          title
+        }
+      }
     }
   `)
+
   return (
     <footer>
       <div
         style={{
           width: "100%",
           background: theme.primaryDark,
-          color:theme.primaryLight
+          color: theme.primaryLight,
         }}
       >
         <div style={{ textAlign: "center", paddingTop: "1em" }}>
@@ -46,7 +52,7 @@ const Footer = () => {
         >
           {data.allFile.edges.map(link => {
             return (
-              <li key={link.node.name} style={{padding:'.3em'}}>
+              <li key={link.node.name} style={{ padding: ".3em" }}>
                 <Link
                   to={`/${link.node.name === "index" ? "" : link.node.name}`}
                   style={{ color: theme.primaryLight }}
@@ -69,7 +75,7 @@ const Footer = () => {
             marginRight: ".3em",
           }}
         />
-        ©{new Date().getFullYear()}
+        {data.site.siteMetadata.title} ©{new Date().getFullYear()}
       </p>
     </footer>
   )

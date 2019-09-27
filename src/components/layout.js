@@ -20,15 +20,6 @@ import Footer from "./footer"
 import MobileMenu from "./mobileMenu"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
   const isMobile = useMedia("(max-width:560px)")
   return (
     <ThemeProvider theme={theme}>

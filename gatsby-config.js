@@ -3,10 +3,10 @@ const fetch = require("node-fetch")
 console.log(process.env.TEST_ENV)
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://gsite-template.netlify.com`,
-    title: `Gatsby Default Starter`,
+    siteUrl: `https://blankgst.netlify.com/`,
+    title: `Gatsby Site`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `Andrew Robida`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,10 +25,10 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-site-template`,
-        short_name: `gsite`,
+        short_name: `gst`,
         start_url: `/`,
-        background_color: `#333`,
-        theme_color: `#333`,
+        background_color: `#0A0216`,
+        theme_color: `#0A0216`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },

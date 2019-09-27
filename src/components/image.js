@@ -26,7 +26,7 @@ const image = data.images.edges.find(n => {
   });
   if (!image) { return null; }
   const imageData = image.node.childImageSharp.fluid
-  return <Img fluid={imageData} />
+  return <Img fluid={imageData} alt={props.alt}/>
 }
 
 export default Image
