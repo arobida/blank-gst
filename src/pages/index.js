@@ -4,8 +4,8 @@ import { useSpring, animated, config } from "react-spring"
 import useMedia from "../hooks/useMedia"
 import Layout from "../components/layout"
 import StyledBgImage from "../components/bgImage"
+import Image from "../components/image"
 import SEO from "../components/seo"
-import Button from "../components/button"
 
 const IndexPage = () => {
   const mobile = useMedia("(max-width:500px)")
@@ -31,11 +31,11 @@ const IndexPage = () => {
       <SEO title="Home" />
       <StyledBgImage>
         <animated.h1 style={stroked}>Hello World</animated.h1>
-        <div style={{ height: "150px", marginBottom: "1em" }}></div>
+        <div style={{ width: "200px", margin: "auto" }}>
+          <Image filename="gatsby-astronaut.png" />
+        </div>
+        <div style={{ height: "150px", marginBottom: "1em" }} />
       </StyledBgImage>
-      <Link to="/about">
-        <Button fontSize={1.5}>Learn More</Button>
-      </Link>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
     </Layout>

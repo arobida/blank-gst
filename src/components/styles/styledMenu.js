@@ -6,7 +6,8 @@ export const StyledMenu = styled.nav`
   justify-content: center;
   background: ${({ theme }) => theme.primaryDark};
   height: 110%;
-  text-align: left;
+  width:40vw;
+  text-align: center;
   padding: 2rem;
   margin-top:-4em;
   position: fixed;

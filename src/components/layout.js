@@ -13,7 +13,7 @@ import { ThemeProvider } from "styled-components"
 import { GlobalStyles } from "../components/styles/global"
 import {theme}  from "../components/styles/theme"
 // Hooks
-// import useMedia from "../hooks/useMedia"
+import useMedia from "../hooks/useMedia"
 // Components
 import Header from "./header"
 import Footer from "./footer"
@@ -29,39 +29,13 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  const useMedia = (query, defaultState = false) => {
-    const [state, setState] = useState(defaultState)
-    console.log(theme)
-    useEffect(() => {
-      let mounted = true
-      const mql = window.matchMedia(query)
-      const onChange = () => {
-        if (!mounted) return
-        setState(!!mql.matches)
-      }
-
-      mql.addListener(onChange)
-      setState(mql.matches)
-
-      return () => {
-        mounted = false
-        mql.removeListener(onChange)
-      }
-    }, [query])
-
-    return state
-  }
   const isMobile = useMedia("(max-width:560px)")
   return (
     <ThemeProvider theme={theme}>
       <>
       <div style={{display:'flex',flexDirection:'column', minHeight:'100vh'}}>
         <GlobalStyles />
-          {isMobile ? (
             <MobileMenu />
-          ) : (
-            <Header siteTitle={data.site.siteMetadata.title} />
-          )}
           <main style={{ textAlign: "center",flex:'1' }}>{children}</main>
         <Footer />
         </div>
