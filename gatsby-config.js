@@ -1,12 +1,19 @@
-require('dotenv').config()
+require("dotenv").config()
 const fetch = require("node-fetch")
 console.log(process.env.TEST_ENV)
+console.log()
 module.exports = {
   siteMetadata: {
     siteUrl: `https://blankgst.netlify.com/`,
     title: `Gatsby Site`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `Andrew Robida`,
+    navLinks: [
+      { name: "home", link: "/" },
+      { name: "about", link: "/about" },
+      { name: "services", link: "/services" },
+      { name: "contact", link: "/contact" },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -5,28 +5,41 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
+import { useTransition, animated } from "react-spring"
 // Global Styles & Theme
 import { ThemeProvider } from "styled-components"
 import { GlobalStyles } from "../components/styles/global"
-import {theme}  from "../components/styles/theme"
+import { theme } from "../components/styles/theme"
 // Hooks
 import useMedia from "../hooks/useMedia"
 // Components
 import Footer from "./footer"
 import MobileMenu from "./mobileMenu"
 
-const Layout = ({ children }) => {
-  const isMobile = useMedia("(max-width:560px)")
+const Layout = ({ children, location }) => {
+  console.log(location)
+  const transitions = useTransition(location, location => location.key, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  })
   return (
     <ThemeProvider theme={theme}>
       <>
-      <div style={{display:'flex',flexDirection:'column', minHeight:'100vh'}}>
-        <GlobalStyles />
-            <MobileMenu />
-          <main style={{ textAlign: "center",flex:'1' }}>{children}</main>
-        <Footer />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          <GlobalStyles />
+          <MobileMenu />
+
+          {transitions.map(({item, key, props})=>(<animated.main key={key} style={{ textAlign: "center", flex: "1",...props }}>{children}</animated.main>))}
+          <Footer />
         </div>
       </>
     </ThemeProvider>

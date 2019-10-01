@@ -5,8 +5,8 @@ export const StyledMenu = styled.nav`
   flex-direction: column;
   justify-content: center;
   background: ${({ theme }) => theme.primaryDark};
-  height: 110%;
-  width:40vw;
+  height: 120%;
+  width:50%;
   text-align: center;
   padding: 2rem;
   margin-top:-4em;

@@ -7,7 +7,7 @@ import StyledBgImage from "../components/bgImage"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => {
+const IndexPage = (props) => {
   const mobile = useMedia("(max-width:500px)")
   const stroked = useSpring({
     to: {
@@ -27,7 +27,7 @@ const IndexPage = () => {
     config: config.molasses,
   })
   return (
-    <Layout>
+    <Layout location={props.location}>
       <SEO title="Home" />
       <StyledBgImage>
         <animated.h1 style={stroked}>Hello World</animated.h1>

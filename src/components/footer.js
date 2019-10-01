@@ -7,19 +7,13 @@ import { theme } from "./styles/theme"
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query {
-      allFile(
-        filter: { sourceInstanceName: { eq: "sitemap" }, name: { nin: "404" } }
-      ) {
-        edges {
-          node {
-            sourceInstanceName
-            name
-          }
-        }
-      }
       site {
         siteMetadata {
           title
+          navLinks{
+            name,
+            link
+          }
         }
       }
     }
@@ -50,15 +44,15 @@ const Footer = () => {
             listStyle: "none",
           }}
         >
-          {data.allFile.edges.map(link => {
+          {data.site.siteMetadata.navLinks.map(item => {
             return (
-              <li key={link.node.name} style={{ padding: ".3em" }}>
+              <li key={item.name} style={{ padding: ".3em" }}>
                 <Link
-                  to={`/${link.node.name === "index" ? "" : link.node.name}`}
+                  to={item.link}
                   style={{ color: theme.primaryLight }}
                   activeStyle={{ color: theme.dark.orange }}
                 >
-                  {link.node.name === "index" ? "home" : link.node.name}
+                  {item.name}
                 </Link>
               </li>
             )

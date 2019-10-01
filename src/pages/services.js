@@ -3,9 +3,9 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Services = () => {
+const Services = (props) => {
   return (
-    <Layout>
+    <Layout location={props.location}>
       <SEO title="Services" />
       <h1>Services</h1>
       <p>Check out all of our services</p>

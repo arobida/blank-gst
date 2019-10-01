@@ -14,7 +14,7 @@ const encode = data => {
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&")
 }
-const Contact = () => {
+const Contact = (props) => {
   const [toggle, setToggle] = useState(false)
   const mobile = useMedia(theme.smQuery)
   const name = useInput("")
@@ -54,7 +54,7 @@ const Contact = () => {
   }
 
   return (
-    <Layout>
+    <Layout location={props.location}>
       <SEO title="Contact" />
       <h1>Contact Us</h1>
       {!toggle ? (
