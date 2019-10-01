@@ -30,7 +30,7 @@ export const StyledMenu = styled.nav`
     letter-spacing: 0.5rem;
     color: ${({ theme }) => theme.primaryLight};
     text-decoration: none;
-    transition: color 0.3s linear;
+    transition: color .3s linear;
 
     @media (max-width: ${({ theme }) => theme.mobile}) {
       font-size: 1.5rem;

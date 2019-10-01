@@ -21,7 +21,6 @@ const Contact = () => {
   const email = useInput("")
   const message = useInput("")
   const onSubmit = e => {
-    e.preventDefault()
     setToggle(!toggle)
     fetch("/", {
       method: "POST",
@@ -33,8 +32,19 @@ const Contact = () => {
         message: message.value,
       }),
     })
-      .then(() => console.log("Success!"))
+      .then(() =>
+        console.log(
+          "Success!",
+          `You have sent this encoded url: ${encode({
+            "form-name": "contact",
+            name: name.value,
+            email: email.value,
+            message: message.value,
+          })}`
+        )
+      )
       .catch(error => console.log(error))
+    e.preventDefault()
   }
   const reset = () => {
     setToggle(false)
@@ -47,16 +57,11 @@ const Contact = () => {
     <Layout>
       <SEO title="Contact" />
       <h1>Contact Us</h1>
-        {toggle === false ? (
-          <Form
-            onSubmit={onSubmit}
-            name={name}
-            email={email}
-            message={message}
-          />
-        ) : (
-          <Sent name={name} email={email} reset={reset} />
-        )}
+      {toggle === false ? (
+        <Form onSubmit={onSubmit} name={name} email={email} message={message} />
+      ) : (
+        <Sent name={name} email={email} reset={reset} />
+      )}
       <Link to="/">Go back to the homepage</Link>
     </Layout>
   )
@@ -93,12 +98,19 @@ const Form = ({ onSubmit, name, email, message }) => {
       }}
     >
       <input type="hidden" name="contact" value="contact" />
+      <p hidden>
+        <label>
+          Don’t fill this out:{" "}
+          <input name="bot-field" />
+        </label>
+      </p>
       <h2>Send A Message</h2>
       <label>Name</label>
       <input
         type="text"
         placeholder="ex. john doe"
         required
+        name="name"
         value={name.value}
         onChange={name.onChange}
         style={{
@@ -119,6 +131,7 @@ const Form = ({ onSubmit, name, email, message }) => {
         type="email"
         placeholder="ex. john@gmail.com"
         required
+        name="email"
         value={email.value}
         onChange={email.onChange}
         style={{
@@ -138,6 +151,7 @@ const Form = ({ onSubmit, name, email, message }) => {
       <textarea
         type="text"
         required
+        name="message"
         value={message.value}
         onChange={message.onChange}
         style={{
@@ -152,7 +166,12 @@ const Form = ({ onSubmit, name, email, message }) => {
           background: theme.primaryLight,
         }}
       />
-      <Button fontSize={1} borderRadius=".3em" color={theme.light.orange} onClick={onSubmit}>
+      <Button
+        fontSize={1}
+        borderRadius=".3em"
+        color={theme.light.orange}
+        onClick={onSubmit}
+      >
         Send
       </Button>
     </form>
