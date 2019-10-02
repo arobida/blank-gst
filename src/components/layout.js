@@ -7,7 +7,8 @@
 
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { useTransition, animated } from "react-spring"
+import { Router, Switch } from "react-router"
+import { useTransition, animated, config } from "react-spring"
 // Global Styles & Theme
 import { ThemeProvider } from "styled-components"
 import { GlobalStyles } from "../components/styles/global"
@@ -19,11 +20,13 @@ import Footer from "./footer"
 import MobileMenu from "./mobileMenu"
 
 const Layout = ({ children, location }) => {
-  console.log(location)
+  console.log("location:",location)
+  console.log("children:",children)
   const transitions = useTransition(location, location => location.key, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    from: { opacity: 0, transform: `translate3d(-100%,0,0)` },
+    enter: { opacity: 1, transform: `translate3d(0,0,0)` },
+    leave: { opacity: 0, transform: `translate3d(100%,0,0)` },
+    config: config.stiff,
   })
   return (
     <ThemeProvider theme={theme}>
@@ -37,8 +40,16 @@ const Layout = ({ children, location }) => {
         >
           <GlobalStyles />
           <MobileMenu />
-
-          {transitions.map(({item, key, props})=>(<animated.main key={key} style={{ textAlign: "center", flex: "1",...props }}>{children}</animated.main>))}
+          {transitions.map(({ item, key, props }) =>{
+            console.log("key:",key)
+          return(
+            <animated.main
+              key={key}
+              style={{ textAlign: "center", flex: "1", ...props }}
+            >
+              {children}
+            </animated.main>
+          )})}
           <Footer />
         </div>
       </>
