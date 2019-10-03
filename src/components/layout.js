@@ -25,7 +25,7 @@ const Layout = ({ children, location }) => {
   const transitions = useTransition(location, location => location.key, {
     from: { opacity: 0, transform: `translate3d(-100%,0,0)` },
     enter: { opacity: 1, transform: `translate3d(0,0,0)` },
-    leave: { opacity: 0, transform: `translate3d(100%,0,0)` },
+    leave: { opacity: 0, transform: `translate3d(0,0,0)` },
     config: config.stiff,
   })
   return (
@@ -43,7 +43,7 @@ const Layout = ({ children, location }) => {
           {transitions.map(({ item, key, props }) =>{
             console.log("key:",key)
           return(
-            <animated.main
+           <animated.main
               key={key}
               style={{ textAlign: "center", flex: "1", ...props }}
             >
