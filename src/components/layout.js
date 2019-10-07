@@ -8,6 +8,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { Router, Switch } from "react-router"
+import {navigate} from "gatsby"
 import { useTransition, animated, config } from "react-spring"
 // Global Styles & Theme
 import { ThemeProvider } from "styled-components"
@@ -20,8 +21,8 @@ import Footer from "./footer"
 import MobileMenu from "./mobileMenu"
 
 const Layout = ({ children, location }) => {
-  console.log("location:",location)
-  console.log("children:",children)
+  console.log("location:", location)
+  console.log("children:", children)
   const transitions = useTransition(location, location => location.key, {
     from: { opacity: 0, transform: `translate3d(-100%,0,0)` },
     enter: { opacity: 1, transform: `translate3d(0,0,0)` },
@@ -40,16 +41,20 @@ const Layout = ({ children, location }) => {
         >
           <GlobalStyles />
           <MobileMenu />
-          {transitions.map(({ item, key, props }) =>{
-            console.log("key:",key)
-          return(
-           <animated.main
-              key={key}
-              style={{ textAlign: "center", flex: "1", ...props }}
-            >
-              {children}
-            </animated.main>
-          )})}
+          {transitions.map(({ item, key, props }) => {
+            console.log("item:", item)
+            return (
+              item && (
+                <animated.main
+                  key={key}
+                  cool={"item"}
+                  style={{ textAlign: "center", flex: "1", ...props }}
+                >
+                  {children}
+                </animated.main>
+              )
+            )
+          })}
           <Footer />
         </div>
       </>
