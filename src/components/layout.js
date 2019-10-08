@@ -40,8 +40,8 @@ const Layout = ({ children, location }) => {
           }}
         >
           <GlobalStyles />
-          {!mobile && <Navigation/>}
-          {mobile && <MobileMenu />}
+          {mobile?null: <Navigation/>}
+          {!mobile? null: <MobileMenu />}
           {transitions.map(({ item, key, props }) => {
             console.log("item:", item)
             return (

@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import {theme} from "./styles/theme"
+import { useGesture } from "react-with-gesture"
+import { theme } from "./styles/theme"
 
 const Navigation = () => {
   const data = useStaticQuery(graphql`
@@ -16,8 +17,9 @@ const Navigation = () => {
       }
     }
   `)
+  const bind = useGesture(values=>console.log(values))
   return (
-    <nav style={{background:theme.primaryDark}}>
+    <nav {...bind()} style={{ background: theme.primaryDark }}>
       <ul
         style={{
           display: "flex",
