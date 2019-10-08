@@ -8,6 +8,7 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = (props) => {
+  console.log(props)
   const mobile = useMedia("(max-width:500px)")
   const stroked = useSpring({
     to: {

@@ -2,6 +2,8 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { useGesture } from "react-with-gesture"
 import { theme } from "./styles/theme"
+import logo from "../images/gatsby-icon.png"
+import Social from "./social"
 
 const Navigation = () => {
   const data = useStaticQuery(graphql`
@@ -17,9 +19,24 @@ const Navigation = () => {
       }
     }
   `)
-  const bind = useGesture(values=>console.log(values))
+  const bind = useGesture(values => console.log(values))
   return (
-    <nav {...bind()} style={{ background: theme.primaryDark }}>
+    <nav
+      style={{
+        position: "fixed",
+        zIndex: "50",
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        background: theme.primaryDark,
+        paddingLeft: "2em",
+        paddingRight: "2em",
+      }}
+    >
+      <Link to="/">
+        <img src={logo} alt="logo" style={{ width: "2em" }} />
+      </Link>
       <ul
         style={{
           display: "flex",
@@ -33,7 +50,12 @@ const Navigation = () => {
             <li key={item.name} style={{ padding: ".3em" }}>
               <Link
                 to={item.link}
-                style={{ color: theme.primaryLight }}
+                style={{
+                  color: theme.primaryLight,
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  fontWeight:'bold'
+                }}
                 activeStyle={{ color: theme.dark.orange }}
               >
                 {item.name}
@@ -42,6 +64,7 @@ const Navigation = () => {
           )
         })}
       </ul>
+      <Social color={theme.primaryLight} />
     </nav>
   )
 }

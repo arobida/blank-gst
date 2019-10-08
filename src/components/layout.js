@@ -40,16 +40,14 @@ const Layout = ({ children, location }) => {
           }}
         >
           <GlobalStyles />
-          {mobile?null: <Navigation/>}
-          {!mobile? null: <MobileMenu />}
+          {mobile?<MobileMenu/>: <Navigation/>}
           {transitions.map(({ item, key, props }) => {
             console.log("item:", item)
             return (
               item && (
                 <animated.main
                   key={key}
-                  cool={"item"}
-                  style={{ textAlign: "center", flex: "1", ...props }}
+                  style={{ marginTop:`${mobile?0:3}em`,textAlign: "center", flex: "1", ...props }}
                 >
                   {children}
                 </animated.main>
