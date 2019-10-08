@@ -7,8 +7,6 @@
 
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { Router, Switch } from "react-router"
-import {navigate} from "gatsby"
 import { useTransition, animated, config } from "react-spring"
 // Global Styles & Theme
 import { ThemeProvider } from "styled-components"
@@ -17,17 +15,19 @@ import { theme } from "../components/styles/theme"
 // Hooks
 import useMedia from "../hooks/useMedia"
 // Components
+import Navigation from "./navigation"
 import Footer from "./footer"
 import MobileMenu from "./mobileMenu"
 
 const Layout = ({ children, location }) => {
+  const mobile = useMedia(theme.smQuery)
   console.log("location:", location)
   console.log("children:", children)
   const transitions = useTransition(location, location => location.key, {
-    from: { opacity: 0, transform: `translate3d(-100%,0,0)` },
-    enter: { opacity: 1, transform: `translate3d(0,0,0)` },
-    leave: { opacity: 0, transform: `translate3d(0,0,0)` },
-    config: config.stiff,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: config.slow,
   })
   return (
     <ThemeProvider theme={theme}>
@@ -40,7 +40,8 @@ const Layout = ({ children, location }) => {
           }}
         >
           <GlobalStyles />
-          <MobileMenu />
+          {!mobile && <Navigation/>}
+          {mobile && <MobileMenu />}
           {transitions.map(({ item, key, props }) => {
             console.log("item:", item)
             return (
