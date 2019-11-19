@@ -54,7 +54,7 @@ const Contact = props => {
   }
   console.log("props:",props)
   return (
-    <Layout location={props.location}>
+    <>
       <SEO title="Contact" />
       <h1>Contact Us</h1>
       {!toggle ? (
@@ -63,7 +63,7 @@ const Contact = props => {
         <Sent name={name} email={email} reset={reset} />
       )}
       <Link to="/">Go back to the homepage</Link>
-    </Layout>
+    </>
   )
 }
 

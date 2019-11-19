@@ -8,7 +8,6 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = (props) => {
-  console.log(props)
   const mobile = useMedia("(max-width:500px)")
   const stroked = useSpring({
     to: {
@@ -28,7 +27,7 @@ const IndexPage = (props) => {
     config: config.molasses,
   })
   return (
-    <Layout location={props.location}>
+    <>
       <SEO title="Home" />
       <StyledBgImage>
         <animated.h1 style={stroked}>Hello World</animated.h1>
@@ -39,7 +38,7 @@ const IndexPage = (props) => {
       </StyledBgImage>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
-    </Layout>
+    </>
   )
 }
 
