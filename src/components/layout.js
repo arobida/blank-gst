@@ -21,12 +21,12 @@ import MobileMenu from "./mobileMenu"
 
 const Layout = ({ children, location }) => {
 	const mobile = useMedia(theme.smQuery)
-	const transitions = useTransition(location, location => location.pathname, {
+	const transitions = useTransition(children, children => children.key, {
 		from: {
 			opacity: 0,
 			position: "static",
 			width: "100%",
-			transform: "translate3d(-100%,0,0)",
+			transform: "translate3d(-100%,0,-100px)",
 		},
 		enter: {
 			opacity: 1,
@@ -34,8 +34,8 @@ const Layout = ({ children, location }) => {
 			position: "static",
 		},
 		leave: {
-			opacity: 1,
-			transform: "translate3d(100%,0,0)",
+			opacity: 0,
+			transform: "translate3d(100%,0,-100px)",
 			position: "absolute",
 		},
 		config: config.slow,
@@ -55,9 +55,8 @@ const Layout = ({ children, location }) => {
 					{transitions.map(({ item, key, props }) => {
 						console.log("item:", item)
 						console.log(location.pathname)
-						console.log("props:", props)
+						console.log("children:", children)
 						return (
-							item ===location && (
 								<animated.main
 									key={key}
 									style={{
@@ -67,9 +66,9 @@ const Layout = ({ children, location }) => {
 										...props,
 									}}
 								>
-									{children}
+									{item}
 								</animated.main>
-							)
+
 						)
 					})}
 					<Footer />
