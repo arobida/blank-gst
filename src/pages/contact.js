@@ -52,7 +52,6 @@ const Contact = props => {
     email.clear()
     message.clear()
   }
-  console.log("props:",props)
   return (
     <>
       <SEO title="Contact" />
