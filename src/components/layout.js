@@ -25,8 +25,8 @@ const Layout = ({ children, location }) => {
 		from: {
 			opacity: 0,
 			position: "static",
-			width: "100%",
-			transform: "translate3d(-100%,0,-100px)",
+      width: "100%",
+			transform: "translate3d(-100%,0,0)",
 		},
 		enter: {
 			opacity: 1,
@@ -35,8 +35,9 @@ const Layout = ({ children, location }) => {
 		},
 		leave: {
 			opacity: 0,
-			transform: "translate3d(100%,0,-100px)",
-			position: "absolute",
+			transform: "translate3d(100%,0,0)",
+      position: "absolute",
+      top:`${mobile?"48px":"0px"}`
 		},
 		config: config.slow,
 	})
