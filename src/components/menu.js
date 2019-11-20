@@ -6,15 +6,15 @@ import { Link } from "gatsby"
 import logo from "../images/gatsby-icon.png"
 import Social from "./social"
 
-const Menu = ({ toggle }) => {
+const Menu = ({ toggle, setToggle }) => {
   return (
-    <StyledMenu toggle={toggle}>
+    <StyledMenu toggle={toggle} onClick={()=>setToggle(!toggle)}>
       <img
         src={logo}
         alt="logo"
         style={{ width: "2em", margin: "0 auto", marginBottom: "1em" }}
       />
-      <Link to="/" activeStyle={{ color: theme.dark.orange }}>
+      <Link to="/" activeStyle={{ color: theme.dark.orange }} >
         <span role="img" aria-label="about us">
           🏠
         </span>
